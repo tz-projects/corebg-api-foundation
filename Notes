@@ -1,0 +1,144 @@
+1. API Hub/API Product Access Request
+
+Who needs to be assigned a license?
+Each developer?
+Each backend Application that needs an API?
+
+
+Might be a trivial question, 
+
+If the spec can be designed in VS code, will it save cost on the number of seats required on swagger studio? (if individual developers/teams will be using studio, they will need to pay for that number of seats)
+
+Is GEAR ID the identifier that ties all these forms together?
+
+
+Intake forms
+
+1.
+
+API Hub/API Product Access Request
+
+    Do you have an existing SmartBear License ?
+    Licensing Type
+        Designer
+        Consumer
+    API Product(s)
+        list of API Products you need access to
+
+
+Probably should be combined with user requests.
+
+User privilege, User provisioning. - can be handled in the same form.
+
+    Clarify this:
+
+    For a corebridge developer/team, the user provisioning step does not apply correct? they are already provisioined.?
+    So this probably is referring to provisioning external consumers - is this understanding correct?
+    in such case, the form should have a qulifying question whether the person requesting access is internal or external.
+
+Email sent to platform team.
+Followed by reviews on Tuesdays.
+
+WHat needs to be improved.? TODO:
+
+Better documentation is needed.
+
+
+Onboarding a new API to the gateway / API hub
+
+Need a better process that can make 
+
+API has to be upl,oaded to swaggerhub
+    An existing API?
+    Or New API?
+    does this even need an approval?
+    Questionnaire should include these details as well.
+
+API review process
+DOes the API need to be in swaggerhub already?
+THink about it.
+
+
+Staging area. (?)
+
+two forms - review, approved - then form for project creation - api onboarding
+
+1. Cop review
+2. everything else.
+
+Ideal case:
+Teams should be starting at swagger studio first (start with the spec)
+
+
+Conceptual (CoP review) (step1 : Form 1)
+
+Decide whether an API need to be built?
+Should this be recorded in smartbear? (For example, BFF HTTP apis on Amazon API GW)
+
+
+
+Spec review (Manual review needed)?  (step2 : Form 2)
+
+    Yes, To enure aspects that can not be enforcfed by spectral. (Domain driven design, whethere there is a conflict in the capabilities the AP{I is built to do})
+
+Anybody who already have the designer access can create/publish the APIs (this is a challenge how can we restrict and streamline this such that only approved APIs will only be deployed to API hub?)
+
+    Team authors the specs in github and publishes to smartbear.
+    This means they shouldn't be granted designer privileges in studio. only the platform team can have the designier privileges on studio.
+    If this is the case, when platform team reviews the specifications in studio and makes any comments, how will that be incorporated by the dev teams, given that they were not allowed to edit the spec in API hub?
+
+    Should we call this studio or api hub?
+
+    Ask smartbear do they or can they ewstablish gates for publishing APIs?
+
+
+How can the review process be made stateful?
+
+
+How to handle BFF APIs which can be HTTP APIs on AWS GW; should we record them as APIs in smartbear?
+
+
+Break the review process
+
+Concceptual (see how meetings can be minimized) can be done offline. (fills out a form: questionnaire is circulated, coordinated via emails)
+Outcome: meetingrequired? approved?
+
+CoP? is this cop (can this be decoupled?)
+
+CoP
+& review are separate.
+
+
+If approved?
+
+Build the spec, put on smartbear
+
+Webhook can notify? (Explore)
+
+Platform team reviews the specs on smartbear. (collaborate)
+
+
+Involve other folks that can weigh in.
+
+
+SHarepoint forms used today.
+Can powerautomate be leveraged?
+what can we automate? (statefulness of the forms? can be automated)
+
+
+Recording feedback:
+
+APproved (so the CI/CD pipeline can ensure this before deployment)
+Does the sharepoint form can provide a status the CI/CD pipeline can call into?
+Approved to build
+
+Avoid redeploy based on version changed or not.
+
+major/minor/patch
+
+Any change must follow change control process
+every change must be one of major/minor/patch version/release
+
+does patch versions need to go through the entire review process?
+
+Pipeline checks whether the API is published, and CoP approved that API (version based)
