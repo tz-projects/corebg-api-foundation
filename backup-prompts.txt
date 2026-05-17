@@ -1,0 +1,80 @@
+i understand we wrapped up at the implementation of POC of that user onboarding form. but I do not have the necessary tools on this machine in order for me to build a POC. therefore I want to pause the implementation at this stage and need the implementation details for the remainder of the two usecases user offboarding and license type change. I like the response where you laid out the detailed implementation plan covering the form fields review, triage rules, smartbear apis involved, statemachine, sharepoint list schema, power automate flows, queue handling, build swquence.
+
+
+
+we can discuss the user offboarding step/form next and here is what i have come up with regards to the fields, to begin the conversation with.
+
+
+
+Offboard user:
+
+
+
+User type: internal or external
+
+
+
+If internal, capture windows account, user name, work email.
+
+
+
+Tell me what should i capture for external user. i am not sure if this was addressed in our discussions on the user onboarding form because that form involved this external user as well.
+
+
+
+How could the form allow searching for external users to assist value lookup during form filling.
+
+
+
+also address triage rules that fit external user field validations.
+
+
+
+Reason for offboarding:  choice, with other option enables freeform text. 
+
+
+
+Has the user's content been transferred 
+
+I went through your answer, and i do have something similar in mind to discuss.
+
+so there are a couple of things to address from a single source of truth point of view.
+
+today the spec lives in github and api hub.,
+the governance rules live in api hub.
+
+the school of thought that i was introduced to was this:
+
+spec lives in github,
+rulesets live in github too,
+pipeline enforces governance with the help of cli tools such as spectral, redocly etc.
+pipeline pblishes valid spec file to api hub.
+
+therefore, the source of truth is github for both spec files and rulesets.
+
+
+now i am dealing with a different school of thought
+
+spec lives in github and api hub (two sources of truth)
+api hub sets the prerequisite that the api has to be in a published state in api hub, which also means that the governance rules are established in api hub and the spec must be written in a way it conforms to those ruleset, both oas and custom, because the setting in smartbear requires apis to pass governance checks in order to be publishable on api hub.
+pipeline enforces the requirements that api must exist in api hub and must be in a published state. and also does a sanity check that the spec in github is identical to the spec in api hub. 
+
+one thing that is missing in this school of thought is where does the spec get written ? in api hub or in github? based on the way i understood the requirements from the customer, it looks like the spec needs to be written in api hub, then comes the question, how does that spec gets into github?
+
+as a note, the org does not allow the github sync feature that smartbear provides which could potentially solve this gap.
+
+tell me what is your synthesis? are these two different ways to solve the same problem or is one better than the other and are there any gaps that both schools of thoughts missing to address?
+
+
+also find whether smartbear allows to mark rules as warnings. i see error and disabled but not a warning.
+
+also find out what capabilities does smartbear provides to allow this: 
+
+pipeline-managed sync — the pipeline itself takes the spec from GitHub, pushes it to API Hub, governance runs, and if it passes the publishing gate, the pipeline continues deployment. If governance fails, the pipeline stops and reports the violations. I
+
+how does the pipeline know what caused the api publishing to fail? if it is governance, what violations?
+
+
+
+
+
